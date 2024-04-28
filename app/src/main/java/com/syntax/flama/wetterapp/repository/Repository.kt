@@ -18,7 +18,6 @@ class Repository @Inject constructor(
         apiHelper.getWeatherFiveDay(lat, lon, apiId)
 
     //db
-
     fun insertWeather(data: WeatherDataBase) {
         database.weatherDao.insertOrUpdateWeather(data)
     }

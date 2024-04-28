@@ -235,7 +235,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             seeFiveDayAdapter?.setList(readFromDatabase(it.fiveDay.toString()))
         }
     }
-     // Wenn auf Button clicken
+     // Button klicken
     override fun bindViews() {
         super.bindViews()
         mBinding.lnChangeFC.setOnClickListener {
@@ -245,14 +245,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 if (isC) "${DecimalFormat("#.#").format((temple - 273.15))}$tempExtensionC" else "${
                     DecimalFormat(
                         "#.#"
-                    ).format((temple + 273.15))
+                    ).format((temple - 273.15 + 33.8))
                 }$tempExtensionF"
 
             mBinding.textFeelsLike.text =
                 if (isC) "Feels like ${DecimalFormat("#.#").format((templeFeelLike - 273.15))}$tempExtensionC" else "Feels like ${
                     DecimalFormat(
                         "#.#"
-                    ).format((templeFeelLike + 273.15))
+                    ).format((templeFeelLike - 273.15 + 33.8))
                 }$tempExtensionF"
         }
 
