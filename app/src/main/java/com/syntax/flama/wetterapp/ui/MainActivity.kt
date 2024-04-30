@@ -28,8 +28,8 @@ import com.syntax.flama.wetterapp.data.liveData.StateData
 import com.syntax.flama.wetterapp.databinding.ActivityMainBinding
 import com.syntax.flama.wetterapp.ui.base.BaseActivity
 import com.syntax.flama.wetterapp.util.Constants
+import com.syntax.flama.wetterapp.util.Constants.hpaExtensions
 import com.syntax.flama.wetterapp.util.Constants.percentExtensions
-import com.syntax.flama.wetterapp.util.Constants.pngExtensions
 import com.syntax.flama.wetterapp.util.Constants.tempExtensionC
 import com.syntax.flama.wetterapp.util.Constants.tempExtensionF
 import com.syntax.flama.wetterapp.util.Constants.windExtensionF
@@ -136,7 +136,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                             // Verwenden Glide um Bilder im Bitmap-Format zu laden und anschließend in ein
                             // Array umzuwandeln, um sie in der Datenbank zu speichern.
                             Glide.with(this).asBitmap()
-                                .load("${BuildConfig.BASE_GET_IMAGE}${weatherEntity.weather[0].icon}.$pngExtensions")
+                                .load("${BuildConfig.BASE_GET_IMAGE}${weatherEntity.weather[0].icon}.$hpaExtensions")
                                 .into(object : CustomTarget<Bitmap>() {
                                     override fun onResourceReady(
                                         resource: Bitmap, transition: Transition<in Bitmap>?
@@ -221,7 +221,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 mBinding.windSpeedIndex.text = "$wind$windExtensionF"
                 mBinding.humidityIndex.text = "$humidity$percentExtensions"
 
-                mBinding.pressureIndex.text = "$pressSure$percentExtensions"
+                mBinding.pressureIndex.text = "$pressSure$hpaExtensions"
 
                 val bitmap = BitmapFactory.decodeByteArray(
                     weatherDb.imageWeather, 0, weatherDb.imageWeather!!.size
@@ -245,14 +245,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 if (isC) "${DecimalFormat("#.#").format((temple - 273.15))}$tempExtensionC" else "${
                     DecimalFormat(
                         "#.#"
-                    ).format((temple - 273.15 + 33.8))
+                    ).format(((temple - 273.15)*9/5 + 32))
                 }$tempExtensionF"
 
             mBinding.textFeelsLike.text =
                 if (isC) "Feels like ${DecimalFormat("#.#").format((templeFeelLike - 273.15))}$tempExtensionC" else "Feels like ${
                     DecimalFormat(
                         "#.#"
-                    ).format((templeFeelLike - 273.15 + 33.8))
+                    ).format(((temple - 273.15)*9/5 + 32))
                 }$tempExtensionF"
         }
 

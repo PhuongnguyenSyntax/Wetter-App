@@ -6,7 +6,7 @@ object Constants {
     const val LONGITUDE = "LONGITUDE"
 
     val percentExtensions: String get() = "%"
-    val pngExtensions: String get() = "png"
+    val hpaExtensions: String get() = "hPa"
     val tempExtensionC: String get() = "°C"
     val tempExtensionF: String get() = "°F"
     val windExtensionF: String get() = "Km/H"
